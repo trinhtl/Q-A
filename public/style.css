@@ -1,0 +1,92 @@
+body{
+	font-family: Comic Sans MS;
+	margin: 0;
+	padding: 0;
+	background-color: #ffffff;
+}
+#header{
+	margin-top: -21px;
+	background-color: #aeedf2;
+	height: 100px;
+}
+#body{
+	height: 90%;	
+}
+#add-image{
+	position: relative;
+	margin-left: 45%;
+	width: 75px;
+	height: 75px;
+}
+#add-image:hover{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	cursor: pointer;
+}
+#form-input{
+	position: relative;
+	margin-left: 40%;
+}
+#list-question{
+	background-color: #ededed;
+	width: 70%;
+	margin: 0 auto;
+	word-break: break-all;
+	border: red;
+}
+#input-question{
+	width: 250px;
+	height: 60px;
+	border: 2px solid #aaa;
+	border-radius: 5px;
+	margin: 8px 0;
+}
+#input-author{
+	width: 250px;
+	height: 25px;
+	border: 2px solid #aaa;
+	border-radius: 5px;
+	margin: 8px 0;
+}
+#done-button{
+	background-color: #aeedf2;
+	width: 80px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	margin: 8px 5px; 
+}
+#done-button:hover{
+	border-radius: 2px solid #aaa;
+	box-shadow: 5px 5px 7px #0a4657;
+}
+#cancel{
+	background-color: #aeedf2;
+	width: 80px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	margin: 8px 5px; 
+}
+#cancel:hover{
+	border-radius: 2px solid #aaa;
+	box-shadow: 5px 5px 7px #0a4657;
+}
+.reply-button{
+	background-color: #aeedf2;
+	width: 80px;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	margin: 8px 5px;
+	float: right;
+}
+.reply-button:hover{
+	border-radius: 2px solid #aaa;
+	box-shadow: 5px 5px 7px #0a4657;
+}
+#question-col{
+	width: 60%;
+}
+th, td {
+    border-bottom: 1px solid #aaa;
+}

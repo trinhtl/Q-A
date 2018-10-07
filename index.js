@@ -1,9 +1,13 @@
-let app = require('express')(),
+let express = require("express"),
+    app = express(),
     http = require("http").Server(app),
-    io = require('socket.io');
+    io = require('socket.io')(http);
+
+app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 
 app.get('/', (req, res) => {
-    res.send("Hello") // fix later
+    res.sendFile("index.html")
 });
 
 io.on('connection', socket => {
