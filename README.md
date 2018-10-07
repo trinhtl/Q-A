@@ -4,7 +4,7 @@
 ```
 git clone https://github.com/NguyenDung98/Q-A
 ```
-- Dẫn đến folder nhom-7 qua cmd hoặc git bash
+- Dẫn đến folder Q-A qua cmd hoặc git bash
 ``` 
 cd Q-A
 ``` 
