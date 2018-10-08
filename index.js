@@ -11,8 +11,11 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', socket => {
-    socket.on('vote', message => {
-        io.emit('vote', message)
+    socket.on('addQuestion', message => {
+        io.emit('addQuestion', message)
+    });
+    socket.on('moreVote', vote => {
+        io.emit('moreVote', vote)
     })
 });
 

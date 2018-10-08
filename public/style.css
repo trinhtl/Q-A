@@ -1,9 +1,14 @@
 body{
-	font-family: Comic Sans MS;
+	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #ffffff;
+	background-color: #E8E8EA;
 }
+
+input[type="button"]:focus {
+	outline: none;
+}
+
 #header{
 	margin-top: -21px;
 	background-color: #aeedf2;
@@ -27,11 +32,10 @@ body{
 	margin-left: 40%;
 }
 #list-question{
-	background-color: #ededed;
-	width: 70%;
+	background-color: #fff;
+	width: 60%;
 	margin: 0 auto;
 	word-break: break-all;
-	border: red;
 }
 #input-question{
 	width: 250px;
@@ -72,21 +76,53 @@ body{
 	box-shadow: 5px 5px 7px #0a4657;
 }
 .reply-button{
-	background-color: #aeedf2;
-	width: 80px;
-	height: 30px;
+	background: none;
 	border: none;
 	border-radius: 5px;
-	margin: 8px 5px;
-	float: right;
+	cursor: pointer;
+	float: left;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	width: 80px;
 }
-.reply-button:hover{
-	border-radius: 2px solid #aaa;
-	box-shadow: 5px 5px 7px #0a4657;
+
+table {
+	border: none;
 }
-#question-col{
-	width: 60%;
+
+.question-block {
+	border: transparent;
+    border-bottom-color: #E8E8EA;
 }
-th, td {
-    border-bottom: 1px solid #aaa;
+
+.author, .reply-button {
+	color: #898B95;
+}
+
+.vote-zone {
+	text-align: center;
+	width: 10%;
+}
+
+.vote-icon {
+	border: 1px solid #C3C3C9;
+	border-radius: 50%;
+	color: #C3C3C9;
+	cursor: pointer;
+	font-size: 2.5em;
+	margin-bottom: 8px;
+	padding: 1px 8px;
+	vertical-align: text-top;
+}
+
+.vote-icon-clicked {
+	border: 1px solid #aeedf2;
+	color: #aeedf2;
+}
+
+.vote-count {
+	font-weight: bold;
+	font-size: 1.2em;
 }
