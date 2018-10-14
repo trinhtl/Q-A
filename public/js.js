@@ -75,7 +75,34 @@ function addQuestion(newQuestion) {
         "<br>" +
         "<input type=\"button\" class=\"reply-button\" value=\"Comments\">";
     // thêm sự kiện khi click vào tăng vote
-    voteIcons[0].addEventListener("click", function () {
+    addEventToVoteIcon(voteIcons[0]);
+}
+
+function handleVoteQuestion(icon, votes) {
+    if (userID === votes.userID && !userMakeVote) {
+        icon.classList.toggle('vote-icon-clicked');
+    }
+    userMakeVote = false; // reset lại dấu
+    let count = icon.nextSibling.nextElementSibling;
+    count.innerText = votes.votes;
+    // sap xep lai cac cau hoi
+    sortQuestions();
+}
+
+function sortQuestions() {
+    let rows = Array.from(table.rows);
+    // sắp xếp dựa trên số phiếu cho mỗi câu hỏi
+    rows.sort((a, b) => Number(a.querySelector('.vote-zone .vote-count').innerText)
+        < Number(b.querySelector('.vote-zone .vote-count').innerText));
+    // gán lại giá trị cho DOM
+    for (let i = 0; i < rows.length; i++) {
+        table.rows[i].outerHTML = rows[i].outerHTML;
+        addEventToVoteIcon(table.rows[i].querySelector('.vote-zone .vote-icon')) // vì sự kiện click bị mất sau tráo các hàng
+    }
+}
+
+function addEventToVoteIcon(icon) {
+    icon.addEventListener("click", function () {
         userMakeVote = true; // đánh dấu người dùng đã vote câu hỏi
         this.classList.toggle('vote-icon-clicked');
         let countSpan = this.nextSibling.nextElementSibling;
@@ -89,15 +116,6 @@ function addQuestion(newQuestion) {
             userID
         });
     })
-}
-
-function handleVoteQuestion(icon, votes) {
-    if (userID === votes.userID && !userMakeVote) {
-        icon.classList.toggle('vote-icon-clicked');
-    }
-    userMakeVote = false; // reset lại dấu
-    let count = icon.nextSibling.nextElementSibling;
-    count.innerText = votes.votes;
 }
 
 // kênh thêm câu hỏi
