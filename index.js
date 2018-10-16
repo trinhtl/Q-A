@@ -7,15 +7,27 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 
 app.get('/', (req, res) => {
-    res.sendFile("index.html")
+    res.sendFile(__dirname + "/views/askingQuestion.html");
+});
+
+app.get('/answer', (req, res) => {
+    res.sendFile(__dirname + "/views/answerQuestion.html");
 });
 
 io.on('connection', socket => {
-    socket.on('addQuestion', message => {
-        io.emit('addQuestion', message)
+    // kenh cau hoi
+    socket.on('addQuestion', question => {
+        io.emit('addQuestion', question)
     });
-    socket.on('moreVote', vote => {
-        io.emit('moreVote', vote)
+    socket.on('moreVoteQuestion', vote => {
+        io.emit('moreVoteQuestion', vote)
+    });
+    // kenh phan hoi
+    socket.on('addComment', comment => {
+        io.emit('addComment', comment)
+    });
+    socket.on('moreVoteComment', vote => {
+        io.emit('moreVoteComment', vote);
     })
 });
 

@@ -1,0 +1,159 @@
+/*----------------Global class------------------*/
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
+	margin: 0;
+	height: inherit;
+}
+
+.container{
+	width: 800px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: auto;
+}
+
+.clear{
+	clear: both;
+}
+
+.people{
+	float: left;
+	width: 100px;
+	/* padding-left: 10px; */
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #898b95;
+	font-size: 14px;
+}
+
+
+.time{
+	/* padding-left: 10px; */
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #898b95;
+	font-size: 14px;
+}
+
+.upVote-count, .downVote-count{
+	padding-top: 2px;
+}
+
+.downVote-count {
+	padding-left: 10px;
+}
+
+.liked{
+	background-color: #48C9FD;
+}
+
+.comment-content {
+	margin: 0;
+}
+
+.comment {
+	margin-bottom: 20px;
+}
+
+.fa {
+	color: #4c4d50;
+	cursor: pointer;
+	font-size: 20px !important;
+	font-weight: bolder;
+}
+
+.vote-area {
+	color: #898b95;
+	padding-top: 3px;
+}
+
+.question-box {
+	padding: 15px 0;
+}
+
+.vote-icon-clicked, .count-changed {
+	color: #00dcf2;
+}
+
+
+/*-----------------ID----------------------------*/
+
+#top{
+	background-color: #FB8F43;
+	color: white;
+	height: 50px;
+}
+
+#lecturer{
+	display: block;
+	padding: 10px;	
+}
+
+#question-content{
+	display: block;
+	padding-top: 5px;
+	height: 80px;
+	border-bottom: 1px dotted gray; 
+}
+
+#comment-button{
+	border-bottom: 2px solid;
+	padding: 10px;
+	color: #FB8F43;
+	cursor: pointer;
+}
+
+#bottom{
+	background-color: #f3f3f9;
+	height: fit-content;
+	min-height: 75%;
+}
+
+#comment-text{
+	box-sizing: border-box;
+	margin-top: 15px;
+	resize: none;
+	width: 100%;
+}
+
+#enter-button{
+	float: right;
+	width: 150px;
+	background-color: #FB8F43;
+	color: white;
+	cursor: pointer;
+}
+
+
+/*------------------Tag--------------------------*/
+
+img.profile-circle{
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	padding: 10px;
+}
+
+button.comment-enter{
+	border: none;
+	background-color: inherit;
+	width: 150px;
+	height: 50px;
+	font-size: 17px;
+}
+
+button.up-vote, button.down-vote{
+	border: none;
+	background-color: inherit;
+	padding: 0;
+	padding-right: 5px;
+}
+
+p.upVote-count, p.downVote-count{
+	float: left;
+}

@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="askingQuestion/askingQuestion.css">
 </head>
 <body>
 <div id="header">
     <h1 style="text-align: center;">QUESTION&ANSWER</h1>
 </div>
 <div id="body">
-    <img src="images\bag.png" id="add-image" onclick="bagClick()">
+    <img src="askingQuestion/images/bag.png" id="add-image" onclick="bagClick()">
     <div style="display: none" id="form-input">
         <textarea type="text" name="question" id="input-question" placeholder="Type your question here."></textarea><br>
         <input type="text" name="author" id="input-author" placeholder="Type your name."/><br>
@@ -20,24 +20,9 @@
         <button id="cancel" onclick="cancelAddQuestion()">Cancel</button>
     </div>
 
-    <table id="list-question" border="1px" cellspacing="0" cellpadding="5px">
-        <!--<tr id="0.06765404427769361" class="question-block">-->
-            <!--<td class="vote-zone">-->
-                <!--<i class="fas fa-caret-up vote-icon"></i><br>-->
-                <!--<span class="vote-count">2</span><br>-->
-                <!--<span>votes</span>-->
-            <!--</td>-->
-            <!--<td>-->
-                <!--<span class="author">dfasdf</span><br>-->
-                <!--<span class="question">ádfas</span><br>-->
-                <!--<br>-->
-                <!--<br>-->
-                <!--<input type="button" class="reply-button" value="Comments">-->
-            <!--</td>-->
-        <!--</tr>-->
-    </table>
+    <table id="list-question" border="1px" cellspacing="0" cellpadding="5px"></table>
 </div>
 <script src="/socket.io/socket.io.js"></script>
-<script src="js.js"></script>
+<script src="askingQuestion/askingQuestion.js"></script>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Answer</title>
+    <link rel="stylesheet" type="text/css" href="answerQuestion/answerQuestion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <!--<script src="answerQuestion.js"></script>-->
+</head>
+<body>
+<div id="top">
+    <div class="container"><p style="font-weight: bold; padding: 10px;">Panel discussion with Q&A</p></div>
+</div>
+<div>
+    <div class="container">
+        <!-- <p style="padding: 10px;">Gather questions and power your converstion with our Q&A</p> -->
+        <!-- <div id="lecturer">
+            <img src="img/profile.jpg" class="profile-circle" style="cursor: pointer;">
+            <img src="img/profile.jpg" class="profile-circle" style="cursor: pointer;">
+        </div> -->
+        <div class="question-box">
+            <div class="people">Hiep Nguyen</div>
+            <div class="time">7 hours ago</div>
+            <div id="question-content"><span style="color: #FB8F43; font-size: 18px;">Q: </span>How would you describe
+                the culture of your organisation?
+            </div>
+        </div>
+        <div>
+            <button id="comment-button" class="comment-enter">Comments(<span id="comment-number">0</span>)</button>
+        </div>
+    </div>
+</div>
+<div id="bottom">
+    <div class="container">
+        <div><textarea rows="5" cols="99" id="comment-text" placeholder="Write your comment here..." maxlength="1000"
+                       onfocus="display_enter()"></textarea></div>
+        <br class="clear"/>
+        <button id="enter-button" class="comment-enter" style="display: none;" onclick="add_Cmt()">Enter</button>
+        <br class="clear"/>
+        <div id="comment-box"></div>
+        <br class="clear"/>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="answerQuestion/answerQuestion.js"></script>
+</body>
+</html>

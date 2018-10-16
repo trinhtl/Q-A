@@ -6,7 +6,8 @@ var table = document.getElementsByTagName('table')[0];
 var voteIcons = document.getElementsByClassName('vote-icon');
 var userID = 1 + Math.random();
 var userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
-var socket = io();
+
+var socket = io(); // kênh truyền dữ liệu
 
 function bagClick() {
     image.style.display = "none";
@@ -29,6 +30,7 @@ function getVal() {
             id: Math.random(),
             userID
         };
+        // đẩy dữ liệu qua kênh 'addQuestion'
         socket.emit('addQuestion', newQuestion);
 
         checkHidden.style.display = "none";
@@ -76,6 +78,8 @@ function addQuestion(newQuestion) {
         "<input type=\"button\" class=\"reply-button\" value=\"Comments\">";
     // thêm sự kiện khi click vào tăng vote
     addEventToVoteIcon(voteIcons[0]);
+    // sap xep lai cac cau hoi
+    sortQuestions();
 }
 
 function handleVoteQuestion(icon, votes) {
@@ -97,7 +101,7 @@ function sortQuestions() {
     // gán lại giá trị cho DOM
     for (let i = 0; i < rows.length; i++) {
         table.rows[i].outerHTML = rows[i].outerHTML;
-        addEventToVoteIcon(table.rows[i].querySelector('.vote-zone .vote-icon')) // vì sự kiện click bị mất sau tráo các hàng
+        addEventToVoteIcon(table.rows[i].querySelector('.vote-zone .vote-icon')) // vì sự kiện click bị mất sau khi tráo các hàng
     }
 }
 
@@ -110,7 +114,8 @@ function addEventToVoteIcon(icon) {
         if (this.classList.contains('vote-icon-clicked')) {
             count = Number(countSpan.innerText) + 1;
         } else count = Number(countSpan.innerText) - 1;
-        socket.emit('moreVote', {
+        // đẩy dữ liệu qua kênh 'moreVoteQuestion'
+        socket.emit('moreVoteQuestion', {
             votes: count,
             questionID: this.parentElement.parentElement.id,
             userID
@@ -124,7 +129,7 @@ socket.on('addQuestion', question => {
 });
 
 // kênh thêm vote cho câu hỏi
-socket.on('moreVote', votes => {
+socket.on('moreVoteQuestion', votes => {
     let questions = Array.from(table.children[0].children);
     let voteIndex = questions.findIndex(question => question.id === votes.questionID);
     handleVoteQuestion(voteIcons[voteIndex], votes);
