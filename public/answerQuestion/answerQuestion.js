@@ -54,10 +54,18 @@ function addCommentToDOM(commentData) {
     // thêm sự kiện tăng vote và giảm vote khi click button
     upVoteBtns[upVoteBtns.length - 1].addEventListener('click', function() {
         let count = this.previousElementSibling;
+        let upCount = 0,
+            downCount = 0;
+        // more thoughts on ittttttttttttttttt
+        this.firstChild.classList.toggle('vote-icon-clicked');
+        count.classList.toggle('count-changed');
+        if (count.classList.contains('count-changed')) {
+            count.innerText = Number(count.innerText) - 1;
+        }
         // đẩy dữ liệu qua kênh 'moreVoteComment'
         socket.emit('moreVoteComment', {
             type: 'upVote',
-            count: Number(count.innerText) + 1,
+            count: count.innerText,
             commentID: this.parentElement.parentElement.parentElement.id,
             userID
         })
@@ -75,8 +83,6 @@ function addCommentToDOM(commentData) {
 }
 
 function handleVoteComment(voteButton, votes) {
-    voteButton.previousElementSibling.innerText = votes.count;
-    voteButton.firstChild.classList.add('vote-icon-clicked');
 }
 
 // kênh thêm comment
