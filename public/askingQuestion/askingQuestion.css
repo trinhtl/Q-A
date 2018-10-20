@@ -15,7 +15,8 @@ input[type="button"]:focus {
 	height: 100px;
 }
 #body{
-	height: 90%;	
+	height: 90%;
+
 }
 #add-image{
 	position: relative;
@@ -27,29 +28,38 @@ input[type="button"]:focus {
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 	cursor: pointer;
 }
+
 #form-input{
-	position: relative;
-	margin-left: 40%;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+#title{
+	text-align: center
 }
 #list-question{
-	background-color: #fff;
 	width: 60%;
+	background-color: #fff;
 	margin: 0 auto;
 	word-break: break-all;
 }
 #input-question{
-	width: 250px;
+	width: 60%;
 	height: 60px;
 	border: 2px solid #aaa;
 	border-radius: 5px;
-	margin: 8px 0;
+	margin-left: 20%;
 }
 #input-author{
-	width: 250px;
+	width: 60%;
 	height: 25px;
 	border: 2px solid #aaa;
 	border-radius: 5px;
-	margin: 8px 0;
+	margin-left: 20%;
+}
+#view_button{
+	justify-content: center;
+	align-items: center;
 }
 #done-button{
 	background-color: #aeedf2;
@@ -57,21 +67,24 @@ input[type="button"]:focus {
 	height: 30px;
 	border: none;
 	border-radius: 5px;
-	margin: 8px 5px; 
+	margin: 8px 5px;
+	margin-left: 75%;
+	margin-top: -2.8%;
 }
 #done-button:hover{
 	border-radius: 2px solid #aaa;
 	box-shadow: 5px 5px 7px #0a4657;
 }
-#cancel{
+#cancel-button{
 	background-color: #aeedf2;
 	width: 80px;
 	height: 30px;
 	border: none;
 	border-radius: 5px;
-	margin: 8px 5px; 
+	margin: 8px 5px;
+	margin-left: 65%;
 }
-#cancel:hover{
+#cancel-button:hover{
 	border-radius: 2px solid #aaa;
 	box-shadow: 5px 5px 7px #0a4657;
 }
@@ -94,7 +107,7 @@ table {
 
 .question-block {
 	border: transparent;
-    border-bottom-color: #E8E8EA;
+	border-bottom-color: #E8E8EA;
 }
 
 .author, .reply-button {

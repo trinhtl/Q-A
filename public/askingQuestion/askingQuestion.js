@@ -1,18 +1,13 @@
-var image = document.getElementById("add-image");
 var checkHidden = document.getElementById("form-input");
 var questionInput = document.getElementById("input-question");
 var authorInput = document.getElementById("input-author");
+var doneButton = document.getElementById("done-button");
+var cancelButton = document.getElementById("cancel-button");
 var table = document.getElementsByTagName('table')[0];
 var voteIcons = document.getElementsByClassName('vote-icon');
 var userID = 1 + Math.random();
 var userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
-
-var socket = io(); // kênh truyền dữ liệu
-
-function bagClick() {
-    image.style.display = "none";
-    checkHidden.style.display = "block";
-}
+var socket = io();
 
 function replyClick() {
     window.location.assign("ex.html");
@@ -30,24 +25,30 @@ function getVal() {
             id: Math.random(),
             userID
         };
-        // đẩy dữ liệu qua kênh 'addQuestion'
+        questionInput.style.border = "2px solid #aaa";
         socket.emit('addQuestion', newQuestion);
-
-        checkHidden.style.display = "none";
-        image.style.display = "block";
-        questionInput.style.border = "";
+        authorInput.style.display = "none";
+        doneButton.style.display = "none";
+        cancelButton.style.display = "none";
     }
     questionInput.value = "";
     document.getElementById("input-author").value = "";
 
 }
 
+function focusFunction(){
+    authorInput.style.display = "block";
+    doneButton.style.display = "block";
+    cancelButton.style.display = "block";
+}
+
 function cancelAddQuestion() {
     questionInput.value = "";
     document.getElementById("input-author").value = "";
     questionInput.style.border = "2px solid #aaa";
-    checkHidden.style.display = "none";
-    image.style.display = "block";
+    authorInput.style.display = "none";
+    doneButton.style.display = "none";
+    cancelButton.style.display = "none";
 }
 
 // Thêm câu hỏi mới

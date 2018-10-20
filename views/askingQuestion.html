@@ -12,12 +12,14 @@
     <h1 style="text-align: center;">QUESTION&ANSWER</h1>
 </div>
 <div id="body">
-    <img src="askingQuestion/images/bag.png" id="add-image" onclick="bagClick()">
-    <div style="display: none" id="form-input">
-        <textarea type="text" name="question" id="input-question" placeholder="Type your question here."></textarea><br>
-        <input type="text" name="author" id="input-author" placeholder="Type your name."/><br>
-        <button id="done-button" onclick="getVal()">Done</button>
-        <button id="cancel" onclick="cancelAddQuestion()">Cancel</button>
+    <div id="form-input">
+        <h4 id="title">YOUR EVEN NAME</h4>
+        <textarea type="text" name="question" id="input-question" placeholder="Type your question here." onfocus="focusFunction()"></textarea><br>
+        <input type="text" name="author" id="input-author" style="display: none;" placeholder="Type your name."/><br>
+        <div id="view_button">
+            <button id="cancel-button" onclick="cancelAddQuestion()" style="display: none;">Cancel</button>
+            <button id="done-button" onclick="getVal()" style="display: none;">Done</button>
+        </div>
     </div>
 
     <table id="list-question" border="1px" cellspacing="0" cellpadding="5px"></table>
