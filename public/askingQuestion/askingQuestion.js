@@ -84,9 +84,7 @@ function addQuestion(newQuestion) {
     for (let i = 0; i < 3 - breakLines; i++) {
         cell2.innerHTML += '<br/>';
     }
-    cell2.innerHTML += '<input type="button" class="reply-button" value="Thảo luận">';
-    // thêm sự kiện khi click vào tăng vote
-    addEventToVoteIcon(voteIcons[0]);
+    cell2.innerHTML += '<input type="button" class="reply-button" value="Phản hồi">';
     // sap xep lai cac cau hoi
     sortQuestions();
 }
@@ -110,7 +108,7 @@ function sortQuestions() {
     // gán lại giá trị cho DOM
     for (let i = 0; i < rows.length; i++) {
         table.rows[i].outerHTML = rows[i].outerHTML;
-        addEventToVoteIcon(table.rows[i].querySelector('.vote-zone .vote-icon')) // vì sự kiện click bị mất sau khi tráo các hàng
+        addEventToVoteIcon(table.rows[i].querySelector('.vote-zone .vote-icon')) // them su kien cho cac icon
     }
 }
 

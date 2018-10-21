@@ -1,5 +1,6 @@
 var commentInput = document.getElementById("comment-text");
-var comments = document.getElementById('comment-box');
+var commentBox = document.getElementById('comment-box');
+var comments = document.getElementsByClassName('comment');
 var commentsNumber = document.getElementById('comment-number');
 var upVoteBtns = document.getElementsByClassName('up-vote');
 var downVoteBtns = document.getElementsByClassName('down-vote');
@@ -11,7 +12,6 @@ function display_enter() {
     if (document.getElementById("enter-button").style.display == "none") {
         document.getElementById("enter-button").style.display = "block";
     }
-
 }
 
 function add_Cmt() {
@@ -47,42 +47,70 @@ function addCommentToDOM(commentData) {
                 "<button class=\"down-vote\" ><i class=\"fa fa-angle-down\"></i></button> " +
             "</div>" +
         "</div>";
-    comments.append(comment);
+    commentBox.append(comment);
 
     // cap nhat lai so luong comment
     commentsNumber.innerText = (Number(commentsNumber.innerText) + 1).toString();
-    // thêm sự kiện tăng vote và giảm vote khi click button
-    upVoteBtns[upVoteBtns.length - 1].addEventListener('click', function() {
+    sortComments();
+}
+
+function addEventToButton(button, type) {
+    button.addEventListener('click', function () {
         let count = this.previousElementSibling;
-        let upCount = 0,
-            downCount = 0;
-        // more thoughts on ittttttttttttttttt
+        let sendData = {
+            type,
+            count: 0,
+            commentID: this.parentElement.parentElement.parentElement.id,
+            userID
+        };
         this.firstChild.classList.toggle('vote-icon-clicked');
         count.classList.toggle('count-changed');
         if (count.classList.contains('count-changed')) {
-            count.innerText = Number(count.innerText) - 1;
+            sendData.count = Number(count.innerText) + 1;
+        } else {
+            sendData.count = Number(count.innerText) - 1;
         }
         // đẩy dữ liệu qua kênh 'moreVoteComment'
-        socket.emit('moreVoteComment', {
-            type: 'upVote',
-            count: count.innerText,
-            commentID: this.parentElement.parentElement.parentElement.id,
-            userID
-        })
-    });
-    downVoteBtns[upVoteBtns.length - 1].addEventListener('click', function() {
-        let count = this.previousElementSibling;
-        // đẩy dữ liệu qua kênh 'moreVoteComment'
-        socket.emit('moreVoteComment', {
-            type: 'downVote',
-            count: Number(count.innerText) + 1, // can 2 thuoc tinh dem
-            commentID: this.parentElement.parentElement.parentElement.id,
-            userID
-        })
-    });
+        socket.emit('moreVoteComment', sendData)
+    })
 }
 
-function handleVoteComment(voteButton, votes) {
+// hàm xử lí tăng vote cho comment
+// affectedButton: là phần bị ảnh hưởng cần được điều chỉnh lại (VD: 1 người chỉ có thể hoặc tăng vote hoặc giảm vote cho 1 comment)
+function handleVoteComment(voteButton, affectedButton, voteData) {
+    voteButton.previousElementSibling.innerHTML = voteData.count;
+    if (affectedButton.firstChild.classList.contains('vote-icon-clicked') && userID === voteData.userID && !voteData.stopChaining) {
+        affectedButton.firstChild.classList.remove('vote-icon-clicked');
+        let count = affectedButton.previousElementSibling;
+        count.classList.remove('count-changed');
+        // chuyển kiểu button
+        if (voteData.type === 'upVote') voteData.type = 'downVote';
+        else voteData.type = 'upVote';
+        // giảm biến đếm
+        voteData.count = Number(count.innerText) - 1;
+        voteData.stopChaining = true; // dừng việc đệ quy gián tiếp
+        // đẩy dữ liệu qua kênh 'moreVoteComment'
+        socket.emit('moreVoteComment', voteData)
+    }
+    sortComments();
+}
+
+// Hàm sắp xếp lại thứ tự ưu tiên các phản hồi
+function sortComments() {
+    let commentsArray = Array.from(comments);
+    commentsArray.sort((a, b) => {
+        let upVoteSelector = '.vote-area .upVote-count',
+            downVoteSelector = '.vote-area .downVote-count';
+        let orderOfA = Number(a.querySelector(upVoteSelector).innerText) - Number(a.querySelector(downVoteSelector).innerText),
+            orderOfB = Number(b.querySelector(upVoteSelector).innerText) - Number(b.querySelector(downVoteSelector).innerText);
+        return orderOfA < orderOfB;
+    });
+    for (let i = 0; i < comments.length; i++) {
+        comments[i].outerHTML = commentsArray[i].outerHTML;
+        // thêm sự kiện cho các vote button
+        addEventToButton(upVoteBtns[i], 'upVote');
+        addEventToButton(downVoteBtns[i], 'downVote');
+    }
 }
 
 // kênh thêm comment
@@ -94,8 +122,8 @@ socket.on('moreVoteComment', voteData => {
     let comments = Array.from(document.getElementsByClassName('comment'));
     let voteIndex = comments.findIndex(comment => comment.id === voteData.commentID);
     if (voteData.type === 'upVote') {
-        handleVoteComment(upVoteBtns[voteIndex], voteData)
+        handleVoteComment(upVoteBtns[voteIndex], downVoteBtns[voteIndex], voteData)
     } else {
-        handleVoteComment(downVoteBtns[voteIndex], voteData)
+        handleVoteComment(downVoteBtns[voteIndex], upVoteBtns[voteIndex], voteData)
     }
 });
