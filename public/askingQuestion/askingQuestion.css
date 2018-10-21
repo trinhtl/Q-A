@@ -2,17 +2,17 @@ body{
 	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #E8E8EA;
+	background-color: #f3f3f4;
 }
 
-input[type="button"]:focus {
+button:focus, input:focus, textarea:focus {
 	outline: none;
 }
 
+
 #header{
-	margin-top: -21px;
+    padding-top: 10px;
 	background-color: #aeedf2;
-	height: 100px;
 }
 #body{
 	height: 90%;
@@ -35,59 +35,89 @@ input[type="button"]:focus {
 	justify-content: center;
 }
 #title{
-	text-align: center
+    color: #673AB7;
+    font-size: 26px;
+    font-weight: 400;
+	text-align: center;
+    text-transform: capitalize;
 }
+
+#user-id {
+	color: #607D8B;
+    text-align: center;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+#user-id span {
+	color: #F44336;
+    font-weight: bold;
+    font-style: normal;
+}
+
 #list-question{
+    clear: right;
 	width: 60%;
 	background-color: #fff;
-	margin: 0 auto;
+	margin: 0 auto 50px;
 	word-break: break-all;
 }
-#input-question{
-	width: 60%;
-	height: 60px;
+#input-question, #input-author{
 	border: 2px solid #aaa;
 	border-radius: 5px;
-	margin-left: 20%;
+    box-sizing: border-box;
+    font-family: inherit !important;
+    font-size: 1em;
+    padding: 10px;
+    width: 100%;
 }
-#input-author{
-	width: 60%;
-	height: 25px;
-	border: 2px solid #aaa;
-	border-radius: 5px;
-	margin-left: 20%;
+
+#input-question {
+    resize: none;
 }
-#view_button{
-	justify-content: center;
-	align-items: center;
+
+#input-zone {
+    margin: 0 auto;
+    width: 60%;
 }
-#done-button{
+
+#done-button, #cancel-button{
 	background-color: #aeedf2;
+    cursor: pointer;
 	width: 80px;
 	height: 30px;
 	border: none;
 	border-radius: 5px;
 	margin: 8px 5px;
-	margin-left: 75%;
-	margin-top: -2.8%;
+    float: right;
 }
-#done-button:hover{
-	border-radius: 2px solid #aaa;
-	box-shadow: 5px 5px 7px #0a4657;
+
+#cancel-button {
+    margin-right: 0;
 }
-#cancel-button{
-	background-color: #aeedf2;
-	width: 80px;
-	height: 30px;
-	border: none;
-	border-radius: 5px;
-	margin: 8px 5px;
-	margin-left: 65%;
+
+#done-button:hover, #cancel-button:hover{
+    background-color: #64ddf2
 }
-#cancel-button:hover{
-	border-radius: 2px solid #aaa;
-	box-shadow: 5px 5px 7px #0a4657;
+
+#event-name {
+    font-weight: 500;
+    text-align: center;
+    text-transform: capitalize;
 }
+
+#event-name span {
+    color: #607D8B;
+    font-weight: normal;
+    font-style: italic;
+}
+
+#symbol {
+    text-align: center;
+    font-size: 5em;
+    margin: 2px;
+}
+
 .reply-button{
 	background: none;
 	border: none;
@@ -113,6 +143,11 @@ table {
 .author, .reply-button {
 	color: #898B95;
 }
+
+.author {
+    line-height: 1.5em;
+}
+
 
 .vote-zone {
 	text-align: center;

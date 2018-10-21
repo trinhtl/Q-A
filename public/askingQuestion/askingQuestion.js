@@ -5,9 +5,14 @@ var doneButton = document.getElementById("done-button");
 var cancelButton = document.getElementById("cancel-button");
 var table = document.getElementsByTagName('table')[0];
 var voteIcons = document.getElementsByClassName('vote-icon');
+var userIdentify = document.querySelector('#user-id span');
+
+// local variables
 var userID = 1 + Math.random();
 var userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay chưa (trong trường hợp người dùng đăng nhập và mở 2 tab)
 var socket = io();
+
+userIdentify.innerText += userID;
 
 function replyClick() {
     window.location.assign("ex.html");
@@ -69,14 +74,17 @@ function addQuestion(newQuestion) {
     cell1.innerHTML =
         "<i class=\"fas fa-caret-up vote-icon\"></i><br>" +
         "<span class=\"vote-count\">0</span><br>" +
-        "<span>votes</span>";
+        "<span>lượt</span>";
     cell1.classList.add("vote-zone");
     cell2.innerHTML =
         `<span class="author">${newQuestion.author}</span><br>` +
-        `<span class="question">${newQuestion.question}</span><br>` +
-        "<br>" +
-        "<br>" +
-        "<input type=\"button\" class=\"reply-button\" value=\"Comments\">";
+        `<span class="question">${newQuestion.question}</span>`;
+    // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
+    let breakLines = newQuestion.question.length / 80; // mỗi dòng có trung bình 80 kí tự
+    for (let i = 0; i < 3 - breakLines; i++) {
+        cell2.innerHTML += '<br/>';
+    }
+    cell2.innerHTML += '<input type="button" class="reply-button" value="Thảo luận">';
     // thêm sự kiện khi click vào tăng vote
     addEventToVoteIcon(voteIcons[0]);
     // sap xep lai cac cau hoi
