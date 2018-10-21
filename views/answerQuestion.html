@@ -2,38 +2,33 @@
 <html>
 <head>
     <title>Answer</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="answerQuestion/answerQuestion.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div id="top">
-    <div class="container"><p style="font-weight: bold; padding: 10px;">Panel discussion with Q&A</p></div>
+    <div class="container"><p id="event-name">Tổng quan về lập trình web</p></div>
 </div>
 <div>
-    <div class="container">
-        <!-- <p style="padding: 10px;">Gather questions and power your converstion with our Q&A</p> -->
-        <!-- <div id="lecturer">
-            <img src="img/profile.jpg" class="profile-circle" style="cursor: pointer;">
-            <img src="img/profile.jpg" class="profile-circle" style="cursor: pointer;">
-        </div> -->
+    <div class="container" style="padding-bottom: 0">
         <div class="question-box">
-            <div class="people">Hiep Nguyen</div>
-            <div class="time">7 hours ago</div>
-            <div id="question-content"><span style="color: #FB8F43; font-size: 18px;">Q: </span>How would you describe
-                the culture of your organisation?
+            <div class="people">Anonymous</div>
+            <div class="time">0 phút trước</div>
+            <div id="question-content"><span style="color: #325386d1; font-size: 18px;">Câu hỏi: </span>Làm thế nào để ...?
             </div>
         </div>
         <div>
-            <button id="comment-button" class="comment-enter">Comments(<span id="comment-number">0</span>)</button>
+            <button id="comment-button" class="comment-enter">Phản hồi (<span id="comment-number">0</span>)</button>
         </div>
     </div>
 </div>
 <div id="bottom">
     <div class="container">
-        <div><textarea rows="5" cols="99" id="comment-text" placeholder="Write your comment here..." maxlength="1000"
-                       onfocus="display_enter()"></textarea></div>
+        <textarea rows="5" cols="99" id="comment-text" placeholder="Nhập phản hồi của bạn..." maxlength="1000"
+                       onfocus="display_enter()"></textarea>
         <br class="clear"/>
-        <button id="enter-button" class="comment-enter" style="display: none;" onclick="add_Cmt()">Enter</button>
+        <button id="enter-button" class="comment-enter" style="display: none;" onclick="add_Cmt()">Xong</button>
         <br class="clear"/>
         <div id="comment-box"></div>
         <br class="clear"/>

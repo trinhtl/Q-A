@@ -83,14 +83,15 @@ button:focus, input:focus, textarea:focus {
 }
 
 #done-button, #cancel-button{
-	background-color: #aeedf2;
+	background-color: #325386d1;
     cursor: pointer;
-	width: 80px;
-	height: 30px;
+	color: white;
 	border: none;
 	border-radius: 5px;
+	float: right;
+	font-size: 0.9em;
 	margin: 8px 5px;
-    float: right;
+	padding: 15px 35px;
 }
 
 #cancel-button {
@@ -98,12 +99,13 @@ button:focus, input:focus, textarea:focus {
 }
 
 #done-button:hover, #cancel-button:hover{
-    background-color: #64ddf2
+    background-color: rgba(62, 111, 174, 0.82)
 }
 
 #event-name {
 	color: #ffdb4f;
     font-weight: 500;
+	margin-top: 5px;
     text-align: center;
     text-transform: capitalize;
 }
@@ -125,14 +127,13 @@ button:focus, input:focus, textarea:focus {
 .reply-button{
 	background: none;
 	border: none;
-	border-radius: 5px;
 	cursor: pointer;
 	float: left;
 	height: 30px;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	width: 80px;
+	text-decoration: none;
 }
 
 table {
@@ -170,8 +171,8 @@ table {
 }
 
 .vote-icon-clicked {
-	border: 1px solid #aeedf2;
-	color: #aeedf2;
+	border: 1px solid #325386d1;
+	color: #325386d1;
 }
 
 .vote-count {

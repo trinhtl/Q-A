@@ -1,4 +1,3 @@
-var checkHidden = document.getElementById("form-input");
 var questionInput = document.getElementById("input-question");
 var authorInput = document.getElementById("input-author");
 var doneButton = document.getElementById("done-button");
@@ -13,10 +12,6 @@ var userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay ch�
 var socket = io();
 
 userIdentify.innerText += userID;
-
-function replyClick() {
-    window.location.assign("ex.html");
-}
 
 function getVal() {
     if (questionInput.value.trim() === "") {
@@ -41,7 +36,7 @@ function getVal() {
 
 }
 
-function focusFunction(){
+function focusFunction() {
     authorInput.style.display = "block";
     doneButton.style.display = "block";
     cancelButton.style.display = "block";
@@ -62,7 +57,6 @@ function addQuestion(newQuestion) {
     replyButton.type = "button";
     replyButton.classList.add("reply-button");
     replyButton.value = "Reply";
-    replyButton.onclick = this.replyClick;
 
     var newRow = table.insertRow(0);
 
@@ -80,11 +74,12 @@ function addQuestion(newQuestion) {
         `<span class="author">${newQuestion.author}</span><br>` +
         `<span class="question">${newQuestion.question}</span>`;
     // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
-    let breakLines = newQuestion.question.length / 80; // mỗi dòng có trung bình 80 kí tự
+    let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự
     for (let i = 0; i < 3 - breakLines; i++) {
         cell2.innerHTML += '<br/>';
     }
-    cell2.innerHTML += '<input type="button" class="reply-button" value="Phản hồi">';
+    if (breakLines > 2) cell2.innerHTML += '<br/>';
+    cell2.innerHTML += '<a type="button" href="/answer" class="reply-button">Phản hồi</a>';
     // sap xep lai cac cau hoi
     sortQuestions();
 }

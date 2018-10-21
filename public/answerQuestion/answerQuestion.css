@@ -4,17 +4,21 @@ html {
 	height: 100%;
 }
 
-body {
+body, textarea {
 	font-family: Roboto,Helvetica,Arial,Microsoft YaHei,SimHei,sans-serif;
 	margin: 0;
 	height: inherit;
+}
+
+button:focus, textarea:focus {
+	outline: none;
 }
 
 .container{
 	width: 800px;
 	margin-right: auto;
 	margin-left: auto;
-	overflow: auto;
+	padding: 20px;
 }
 
 .clear{
@@ -24,7 +28,6 @@ body {
 .people{
 	float: left;
 	width: 100px;
-	/* padding-left: 10px; */
 	padding-top: 5px;
 	padding-bottom: 5px;
 	color: #898b95;
@@ -72,21 +75,16 @@ body {
 	padding-top: 3px;
 }
 
-.question-box {
-	padding: 15px 0;
-}
-
 .vote-icon-clicked, .count-changed {
-	color: #00dcf2;
+	color: #6036ff;
 }
 
 
 /*-----------------ID----------------------------*/
 
 #top{
-	background-color: #FB8F43;
+	background-color: #325386d1;
 	color: white;
-	height: 50px;
 }
 
 #lecturer{
@@ -98,35 +96,53 @@ body {
 	display: block;
 	padding-top: 5px;
 	height: 80px;
-	border-bottom: 1px dotted gray; 
+	border-bottom: 1px solid #e8e8ea;
 }
 
 #comment-button{
 	border-bottom: 2px solid;
 	padding: 10px;
-	color: #FB8F43;
+	color: #325386d1;
 	cursor: pointer;
 }
 
 #bottom{
-	background-color: #f3f3f9;
+	background-color: #f3f3f4;
 	height: fit-content;
 	min-height: 75%;
 }
 
 #comment-text{
+	border: 2px solid #aaa;
+	border-radius: 5px;
 	box-sizing: border-box;
-	margin-top: 15px;
+	font-family: inherit !important;
+	font-size: 1em;
+	padding: 10px;
 	resize: none;
 	width: 100%;
 }
 
 #enter-button{
 	float: right;
-	width: 150px;
-	background-color: #FB8F43;
+	background-color: #325386d1;
+	border-radius: 5px;
 	color: white;
 	cursor: pointer;
+	margin: 8px 0;
+	padding: 15px 35px;
+}
+
+#enter-button:hover {
+	background-color: rgba(62, 111, 174, 0.82)
+}
+
+#event-name {
+	color: #ffdb4f;
+	font-weight: bold;
+	font-size: 1.5em;
+	margin: 0;
+	text-transform: capitalize;
 }
 
 
