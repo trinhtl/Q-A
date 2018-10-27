@@ -12,21 +12,38 @@ var userMakeVote = false; // đánh dấu người dùng vote câu hỏi hay ch�
 var socket = io();
 
 userIdentify.innerText += userID;
+// lấy dữ liệu từ server
+axios.get('/api/question/')
+    .then(questions => questions.data)
+    .then(questions => {
+        questions.forEach(question => {
+            addQuestion(question)
+        })
+    })
+    .catch(error => {
+        console.log(error)
+    });
 
 function getVal() {
     if (questionInput.value.trim() === "") {
         questionInput.style.border = "1px solid red";
     }
     else {
-        var author = authorInput.value.trim() ? authorInput.value.trim() : "Anonym";
+        var user = authorInput.value.trim() ? authorInput.value.trim() : "Ẩn danh";
         var newQuestion = {
-            author,
-            question: questionInput.value,
-            id: Math.random(),
-            userID
+            user,
+            question: questionInput.value
         };
+        axios.post('/api/question/', newQuestion)
+            .then(question => question.data)
+            .then(question => {
+                socket.emit('addQuestion', question);
+            })
+            .catch(error => {
+                alert(error);
+            });
+
         questionInput.style.border = "2px solid #aaa";
-        socket.emit('addQuestion', newQuestion);
         authorInput.style.display = "none";
         doneButton.style.display = "none";
         cancelButton.style.display = "none";
@@ -63,7 +80,7 @@ function addQuestion(newQuestion) {
     var cell1 = newRow.insertCell(0);
     var cell2 = newRow.insertCell(1);
 
-    newRow.id = newQuestion.id;
+    newRow.id = newQuestion._id;
     newRow.classList.add('question-block');
     cell1.innerHTML =
         "<i class=\"fas fa-caret-up vote-icon\"></i><br>" +
@@ -71,7 +88,7 @@ function addQuestion(newQuestion) {
         "<span>lượt</span>";
     cell1.classList.add("vote-zone");
     cell2.innerHTML =
-        `<span class="author">${newQuestion.author}</span><br>` +
+        `<span class="author">${newQuestion.user}</span><br>` +
         `<span class="question">${newQuestion.question}</span>`;
     // xử lí khoảng xuống dòng khi có nhiều dòng được thêm vào
     let breakLines = newQuestion.question.length / 88; // mỗi dòng có trung bình 88 kí tự

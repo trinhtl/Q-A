@@ -1,10 +1,17 @@
-let express = require("express"),
-    app = express(),
-    http = require("http").Server(app),
-    io = require('socket.io')(http);
+let express       = require("express"),
+    app           = express(),
+    bodyParser    = require('body-parser'),
+    http          = require("http").Server(app),
+    io            = require('socket.io')(http),
+    questionRoute = require('./routes/question');
+
+// cau hinh express
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
+app.use('/api/question', questionRoute);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/views/askingQuestion.html");
