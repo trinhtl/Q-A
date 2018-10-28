@@ -1,9 +1,11 @@
 let router = require('express').Router(),
-    helper = require('../helpers/question'),
-    db     = require('../models');
+    helpers = require('../helpers/question');
 
 router.route('/')
-    .get(helper.getAllQuestion)
-    .post(helper.createQuestion);
+    .get(helpers.getAllQuestion)
+    .post(helpers.createQuestion);
+
+router.route("/:questionID")
+    .put(helpers.updateQuestion);
 
 module.exports = router;

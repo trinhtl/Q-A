@@ -103,7 +103,7 @@ function sortComments() {
             downVoteSelector = '.vote-area .downVote-count';
         let orderOfA = Number(a.querySelector(upVoteSelector).innerText) - Number(a.querySelector(downVoteSelector).innerText),
             orderOfB = Number(b.querySelector(upVoteSelector).innerText) - Number(b.querySelector(downVoteSelector).innerText);
-        return orderOfA < orderOfB;
+        return compare(orderOfB, orderOfA);
     });
     for (let i = 0; i < comments.length; i++) {
         comments[i].outerHTML = commentsArray[i].outerHTML;
@@ -111,6 +111,15 @@ function sortComments() {
         addEventToButton(upVoteBtns[i], 'upVote');
         addEventToButton(downVoteBtns[i], 'downVote');
     }
+}
+
+function compare(val_1, val_2) {
+    if (val_1 < val_2) {
+        return -1;
+    } else if (val_1 > val_2) {
+        return 1;
+    }
+    return 0;
 }
 
 // kênh thêm comment

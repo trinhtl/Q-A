@@ -12,7 +12,8 @@ let questionSchema = new mongoose.Schema({
     user: {
         type: String,
         default: 'Ẩn danh'
-    }
+    },
+    postTime: Date
 });
 
 let Question = mongoose.model("Question", questionSchema);

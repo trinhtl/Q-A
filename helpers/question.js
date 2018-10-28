@@ -15,8 +15,17 @@ module.exports = {
             .then(questions => {
                 res.json(questions)
             })
-            .catch(error => [
+            .catch(error => {
                 res.send(error)
-            ])
+            })
+    },
+    updateQuestion(req, res) {
+        db.Question.findByIdAndUpdate(req.params.questionID, req.body, {new: true})
+            .then(updatedQuestion => {
+                res.json(updatedQuestion)
+            })
+            .catch(error => {
+                res.sendFile(error)
+            })
     }
 };
