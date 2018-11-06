@@ -13,7 +13,15 @@ let questionSchema = new mongoose.Schema({
         type: String,
         default: 'Ẩn danh'
     },
-    postTime: Date
+    postTime: Date,
+    comment: {
+        type: Number,
+        default: 0
+    },
+    session: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Session'
+    }
 });
 
 let Question = mongoose.model("Question", questionSchema);

@@ -25,7 +25,25 @@ module.exports = {
                 res.json(updatedQuestion)
             })
             .catch(error => {
-                res.sendFile(error)
+                res.send(error)
+            })
+    },
+    getQuestionByID(questionID) {
+        return db.Question.findById(questionID)
+            .then(question => {
+                return question;
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
+    getQuestionBySessionId(req, res) {
+        db.Question.find({session: req.params.sessionID})
+            .then(questions => {
+                res.json(questions)
+            })
+            .catch(error => {
+                res.send(error)
             })
     }
 };

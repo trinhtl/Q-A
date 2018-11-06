@@ -13,3 +13,5 @@ mongoose.connect(url, {dbName: 'q-a'})
 mongoose.Promise = Promise;
 
 module.exports.Question = require('./question');
+module.exports.Comment = require('./comment');
+module.exports.Session = require('./session');
