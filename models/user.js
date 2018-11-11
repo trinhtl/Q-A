@@ -5,9 +5,17 @@ let userSchema = new mongoose.Schema({
 		type: String,
 		required: 'User is required!'
 	},
+	username: {
+		type: String,
+		required: 'User Name is required!'
+	},
 	role: {
 		type: String,
 		default: 'Student'
+	},
+	password: {
+		type: String,
+		required: 'Password is required!'
 	}
 });
 

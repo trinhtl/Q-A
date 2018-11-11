@@ -7,5 +7,8 @@ router.route('/')
 
 router.route('/:userID')
 	.put(helper.updateUser);
+	
+router.route('/del/:userID')
+	.put(helper.deleteUser);
 
 module.exports = router;

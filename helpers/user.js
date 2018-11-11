@@ -3,17 +3,17 @@ let db = require('../models');
 module.exports = {
 	createUser(req, res){
 		db.User.create(req.body)
-			.then(user => {
-				res.json(user)
+			.then(createUser => {
+				res.json(createUser)
 			})
-			.catch(error => {
-				res(send(error))
-			})
+			.catch(error => [
+				res.send(error)
+			])
 	},
 	getAllUser(req, res){
 		db.User.find()
-			.then(users => {
-				res.json(users)
+			.then(getAllUser => {
+				res.json(getAllUser)
 			})
 			.catch(error => [
 				res.send(error)
@@ -27,5 +27,14 @@ module.exports = {
 			.catch(error => {
 				res.send(error)
 			})
+	},
+	deleteUser(req, res){
+		db.User.findByIdAndDelete(req.params.userID)
+			.then(deleteUser => {
+				res.json(deleteUser)
+			})
+			.catch(error => [
+				res.send(error)
+			])
 	}
 };
